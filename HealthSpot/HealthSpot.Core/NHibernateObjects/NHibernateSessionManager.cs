@@ -13,6 +13,8 @@ using HealthSpot.Core;
 using HealthSpot.Core.DomainObjects;
 using HealthSpot.Core.NHibernateObjects;
 using NHibernate.Tool.hbm2ddl;
+using FluentNHibernate.Cfg.Db;
+using NHibernate.SqlAzure;
 
 namespace HealthSpot.Core
 {
@@ -42,11 +44,7 @@ namespace HealthSpot.Core
         public static NHibernate.Cfg.Configuration GetConfiguration()
         {
             return Fluently.Configure()
-                           .Database(FluentNHibernate.Cfg.Db.MySQLConfiguration.Standard.ConnectionString(c => c.FromConnectionStringWithKey("DatabaseConnection"))
-                                                            .Dialect("NHibernate.Dialect.MySQL5Dialect")
-                                                            .Provider("NHibernate.Connection.DriverConnectionProvider")
-                                                            .Driver("NHibernate.Driver.MySqlDataDriver")
-                                                            .ShowSql())
+                           .Database(MsSqlConfiguration.MsSql2008.ConnectionString(System.Environment.GetEnvironmentVariable("DatabaseConnection")).Driver<SqlAzureClientDriver>())
                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Employee>())
                            .CurrentSessionContext("web")
                            .BuildConfiguration();

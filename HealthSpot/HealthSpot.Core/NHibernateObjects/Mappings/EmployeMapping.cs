@@ -12,12 +12,12 @@ namespace HealthSpot.Core
     {
         public EmployeeMapping()
         {
-            Table("employee");
+            Table("EMPLOYEE");
             Id(m => m.Id, "Id");
-            Map(m => m.FirstName, "FirstName");
-            Map(m => m.LastName, "LastName");
-            Map(m => m.BirthDate, "BirthDate");
-            Map(m => m.JobTitle, "JobTitle");
+            Map(m => m.FirstName, "First_NME");
+            Map(m => m.LastName, "Last_NME");
+            Map(m => m.BirthDate, "Birth_DTE");
+            Map(m => m.JobTitle, "JobTitle_DSC");
         }
     }
 }
