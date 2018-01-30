@@ -41,6 +41,10 @@ namespace HealthSpot.Core
                 return _sessionFactory = CreateSessionFactory();
             return _sessionFactory;
         }
+        /// <summary>
+        /// Initializes NHibernate Configuration
+        /// </summary>
+        /// <returns></returns>
         public static NHibernate.Cfg.Configuration GetConfiguration()
         {
             return Fluently.Configure()
