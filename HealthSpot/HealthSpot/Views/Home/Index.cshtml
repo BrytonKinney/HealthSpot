@@ -11,10 +11,5 @@
 </div>
 
 <div class="well-lg">
-    @{
-        if (Model != null)
-        {
-            Html.DisplayTextFor<EmployeeModel, string>(m => m.FirstName);
-        }
-    }
+    @Html.DisplayFor(m => m.FirstName)
 </div>
