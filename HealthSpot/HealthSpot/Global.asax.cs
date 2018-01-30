@@ -5,10 +5,23 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using HealthSpot.Core;
+using Ninject.Modules;
+using HealthSpot.Context.Interfaces;
+using HealthSpot.Repository.Interfaces;
+using Ninject;
+using System.Reflection;
+using Ninject.Web.Common;
+using HealthSpot.Context;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using HealthSpot;
+using NHibernate;
+using HealthSpot.App_Start;
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Log4Net.config", Watch = true)]
 
 namespace HealthSpot
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -16,6 +29,18 @@ namespace HealthSpot
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.Configure();
+            NHibernateSessionManager.CreateSessionFactory();
+        }
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            var session = NHibernateSessionManager.GetSession();
+            NHibernate.Context.CurrentSessionContext.Bind(session);
+        }
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            var session = NHibernate.Context.CurrentSessionContext.Unbind(NHibernateSessionManager.GetSessionFactory());
+            session.Dispose();
         }
     }
 }

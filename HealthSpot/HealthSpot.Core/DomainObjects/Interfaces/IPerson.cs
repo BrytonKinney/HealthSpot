@@ -8,6 +8,7 @@ namespace HealthSpot.Core.DomainObjects
 {
     interface IPerson
     {
+        int Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         DateTime BirthDate { get; set; }
