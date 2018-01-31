@@ -19,10 +19,7 @@ namespace HealthSpot.Controllers
         }
         public ActionResult Index()
         {
-            ModelState.Clear();
-            Employee emp = (Employee)_hsContext.Employees.GetById(typeof(Employee), 1);
-            EmployeeModel empModel = AutoMapper.Mapper.Map<EmployeeModel>(emp);
-            return View(empModel);
+            return View();
         }
 
         public ActionResult About()

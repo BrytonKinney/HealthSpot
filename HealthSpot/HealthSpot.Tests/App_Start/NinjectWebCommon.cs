@@ -5,7 +5,7 @@ namespace HealthSpot.Tests.App_Start
 {
     using System;
     using System.Web;
-
+    using HealthSpot.Context.Interfaces;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -61,6 +61,7 @@ namespace HealthSpot.Tests.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IHealthSpotContext>().To<HealthSpotContext>();
         }        
     }
 }
