@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace HealthSpot.Controllers
 {
+    [EmployeeAuthorization]
     public class HomeController : Controller
     {
         private IHealthSpotContext _hsContext;

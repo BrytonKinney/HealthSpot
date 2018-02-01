@@ -29,29 +29,27 @@ namespace HealthSpot.Controllers
         {
             return View();
         }
+
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult EmployeeLogin(LoginModel UserCredentials)
         {
             Employee emp = _hsContext.Employees.GetById(typeof(Employee), UserCredentials.Id);
             if (emp != null)
             {
-                //if (string.IsNullOrEmpty(emp.Password))
-                //{
-                //    string newPassword = Crypto.HashPassword(UserCredentials.Password);
-                //    emp.Password = newPassword;
-                //    _hsContext.SaveChanges(emp);
-                //}
                 bool isTrue = Crypto.VerifyHashedPassword(emp.Password, UserCredentials.Password);
                 if(isTrue)
                 {
                     EmployeeModel empModel = AutoMapper.Mapper.Map<EmployeeModel>(emp);
                     empModel.IsAuthorized = isTrue;
-                    FormsAuthentication.SetAuthCookie(empModel.Id.ToString(), true);
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket("EmployeeAuthorizedLoginCredentials3adf3211dsfab@#$UYT(^*P|AZXCV!#$&%^*", true, 60 * 12);
+                    var encryptedCookie = FormsAuthentication.Encrypt(ticket);
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedCookie));
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return View();
+            return RedirectToAction("~/Employee/Login");
         }
     }
 }

@@ -17,8 +17,9 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using HealthSpot;
 using NHibernate;
 using HealthSpot.App_Start;
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Log4Net.config", Watch = true)]
+using System.Web.Security;
 
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Log4Net.config", Watch = true)]
 namespace HealthSpot
 {
     public class MvcApplication : HttpApplication
