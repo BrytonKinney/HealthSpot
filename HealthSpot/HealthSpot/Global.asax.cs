@@ -36,10 +36,14 @@ namespace HealthSpot
         {
             var session = NHibernateSessionManager.GetSession();
             NHibernate.Context.CurrentSessionContext.Bind(session);
+            session.BeginTransaction();
         }
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            var session = NHibernate.Context.CurrentSessionContext.Unbind(NHibernateSessionManager.GetSessionFactory());
+            var session = NHibernateSessionManager.GetSession();
+            if (session.Transaction != null && session.Transaction.IsActive)
+                session.Transaction.Commit();
+            NHibernate.Context.CurrentSessionContext.Unbind(NHibernateSessionManager.GetSessionFactory());
             session.Dispose();
         }
     }

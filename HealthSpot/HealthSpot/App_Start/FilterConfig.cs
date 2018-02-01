@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using HealthSpot.App_Start.AuthorizationAttributes;
+using System.Web;
 using System.Web.Mvc;
 
 namespace HealthSpot
@@ -8,6 +9,7 @@ namespace HealthSpot
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+       //     filters.Add(new EmployeeAuthorizationAttribute());
         }
     }
 }

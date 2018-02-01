@@ -14,5 +14,6 @@ namespace HealthSpot.Core
         public virtual string LastName { get; set; }
         public virtual DateTime BirthDate { get; set; }
         public virtual string JobTitle { get; set; }
+        public virtual string Password { get; set; }
     }
 }

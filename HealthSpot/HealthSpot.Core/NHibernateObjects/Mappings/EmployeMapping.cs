@@ -13,11 +13,15 @@ namespace HealthSpot.Core
         public EmployeeMapping()
         {
             Table("EMPLOYEE");
-            Id(m => m.Id, "Id");
+            Id(m => m.Id, "Id")
+                .GeneratedBy
+                .Increment()
+                .Not.Nullable();
             Map(m => m.FirstName, "First_NME");
             Map(m => m.LastName, "Last_NME");
             Map(m => m.BirthDate, "Birth_DTE");
             Map(m => m.JobTitle, "JobTitle_DSC");
+            Map(m => m.Password, "Password_TXT");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using HealthSpot.Context.Interfaces;
+﻿using HealthSpot.App_Start.AuthorizationAttributes;
+using HealthSpot.Context.Interfaces;
 using HealthSpot.Core;
 using HealthSpot.Core.DomainObjects;
 using HealthSpot.Models;
@@ -17,6 +18,7 @@ namespace HealthSpot.Controllers
         {
             _hsContext = healthContext;
         }
+      //  [EmployeeAuthorization]
         public ActionResult Index()
         {
             return View();

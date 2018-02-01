@@ -17,7 +17,7 @@ namespace HealthSpot.Context
         {
 
         }
-        public virtual object GetById(Type objType, int Id)
+        public virtual Employee GetById(Type objType, int Id)
         {
             if (_currentSession == null || !_currentSession.IsOpen)
                 _currentSession = NHibernateSessionManager.GetSession();
