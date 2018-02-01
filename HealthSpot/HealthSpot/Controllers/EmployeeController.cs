@@ -46,6 +46,7 @@ namespace HealthSpot.Controllers
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket("EmployeeAuthorizedLoginCredentials3adf3211dsfab@#$UYT(^*P|AZXCV!#$&%^*", true, 60 * 12);
                     var encryptedCookie = FormsAuthentication.Encrypt(ticket);
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encryptedCookie));
+                    Response.Cookies.Add(new HttpCookie("EmployeeId", emp.Id.ToString()));
                     return RedirectToAction("Index", "Home");
                 }
             }

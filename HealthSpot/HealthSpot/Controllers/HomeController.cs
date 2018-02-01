@@ -19,10 +19,12 @@ namespace HealthSpot.Controllers
         {
             _hsContext = healthContext;
         }
-      //  [EmployeeAuthorization]
         public ActionResult Index()
         {
-            return View();
+            var emp = _hsContext.GetLoggedInUser();
+            ModelState.Clear();
+            var empModel = AutoMapper.Mapper.Map<EmployeeModel>(emp);
+            return View(empModel);
         }
 
         public ActionResult About()
