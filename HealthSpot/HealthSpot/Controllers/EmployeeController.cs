@@ -38,6 +38,10 @@ namespace HealthSpot.Controllers
             Employee emp = _hsContext.Employees.GetById(typeof(Employee), UserCredentials.Id);
             if (emp != null)
             {
+                if(emp.Password == null)
+                {
+                    emp.Password = Crypto.HashPassword(UserCredentials.Password);
+                }
                 bool isTrue = Crypto.VerifyHashedPassword(emp.Password, UserCredentials.Password);
                 if(isTrue)
                 {
@@ -50,7 +54,7 @@ namespace HealthSpot.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return RedirectToAction("~/Employee/Login");
+            return RedirectToAction("Login");
         }
     }
 }

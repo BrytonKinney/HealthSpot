@@ -40,7 +40,7 @@ namespace HealthSpot.App_Start.AuthorizationAttributes
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new ViewResult() { ViewName = "~/Views/Employee/Login.cshtml" };
+            filterContext.Result = new ViewResult() { ViewName = "~/Employee/Login" };
         }
     }
 }

@@ -25,14 +25,19 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-            </div>
-            <div>
-                @{
-                    if (Model != null && !string.IsNullOrEmpty(Model.FirstName))
-                    {
-                        @Html.DisplayTextFor(m => m.FirstName)
-                    }
-                }
+                <ul class="navbar-collapse collapse nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">
+                            @{
+                                if (Model != null && !string.IsNullOrEmpty(Model.FirstName))
+                                {
+                                    @Html.Raw("Hello, ")
+                                    @Html.DisplayTextFor(m => m.FirstName)
+                                }
+                            }
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
