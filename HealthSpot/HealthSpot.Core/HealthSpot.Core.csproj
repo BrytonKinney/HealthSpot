@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainObjects\Condition.cs" />
     <Compile Include="DomainObjects\Employee.cs" />
     <Compile Include="DomainObjects\Interfaces\IPerson.cs" />
     <Compile Include="DomainObjects\Patient.cs" />
@@ -116,9 +117,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
